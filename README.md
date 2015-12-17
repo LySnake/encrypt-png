@@ -1,3 +1,3 @@
 # EncryptPNG
 PNG图片加密解密库
-<a href="http://www.cnblogs.com/zhangpanyi/p/4560297.html" target="_blank">http://www.cnblogs.com/zhangpanyi/p/4560297.html</a>
+[http://igameday.com/game-development/18.html](http://igameday.com/game-development/18.html)
