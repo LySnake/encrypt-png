@@ -3,3 +3,13 @@ PNG格式图片加密解密工具，可以很方便地嵌入到cocos2d-x游戏�
 
 # 运行环境
 由于使用了windows的api，加密程序只支持windows系统。解密程序可在任意支持c++11编译器的平台上使用。
+
+# 如何使用
+你可以[直接下载](https://github.com/zhangpanyi/encrypt-png/tree/master/cpp/Release)已经编译好的加密和解密程序，如果无法运行你可以自己编译源代码来生成程序。
+
+加密PNG图片，把 EncryptPNG.exe 文件放到图片所在的文件目录里面执行，然后输入密钥就可以了。然后它就会自动加密所在目录及其子目录的所有PNG图片，并在生成对应的 .epng 文件。
+
+如果想要验证文件是否能够成功解密，只需打开命令窗口，输入 DecryptPNG.exe xxx.epng，然后输入密钥。如果密钥正确的话就会生成一个 .png 文件。
+
+# 实现原理
+[http://igameday.com/2015/12/08/2.html](http://igameday.com/2015/12/08/2.html)
