@@ -1,0 +1,10 @@
+/cpp/Release/*.iobj
+/cpp/Release/*.ipdb
+/cpp/Release/*.pdb
+/cpp/Debug
+/cpp/.vs
+/cpp/DecryptPNG/Debug
+/cpp/DecryptPNG/Release
+/cpp/EncryptPNG/Debug
+/cpp/EncryptPNG/Release
+
