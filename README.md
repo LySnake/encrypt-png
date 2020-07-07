@@ -14,3 +14,19 @@ e.g:
 ./EncryptPNG.exe ./resDir
 
 ```
+
+# 后期可能功能
+因为生成的功具是windows平台依赖，后续，如果有需要再通过python编写解决依赖问题
+
+```
+已知需要的部分环境:
+
+python 2.7
+
+pip install struct
+pip install pycryptodome  --win下AES
+pip install pycrypto      --linux下AES
+pip install CRC32相关的库
+```
+# 参考文档
+(png图片结构分析与加密解密原理)[https://www.cnblogs.com/amws/p/3336536.html]
