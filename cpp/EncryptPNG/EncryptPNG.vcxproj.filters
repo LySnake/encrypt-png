@@ -6,35 +6,35 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Classes\Struct.h">
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="..\Classes\CRC32.cpp">
       <Filter>Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="Classes\Encrypt.h">
+    </ClCompile>
+    <ClCompile Include="..\Classes\Encrypt.cpp">
       <Filter>Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="Classes\Files.h">
+    </ClCompile>
+    <ClCompile Include="..\Classes\AES.cpp">
       <Filter>Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="Classes\Tools.h">
-      <Filter>Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="Classes\AES.h">
-      <Filter>Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="Classes\CRC32.h">
-      <Filter>Classes</Filter>
-    </ClInclude>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Classes\Encrypt.cpp">
+    <ClInclude Include="..\Classes\CRC32.h">
       <Filter>Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="Classes\AES.cpp">
+    </ClInclude>
+    <ClInclude Include="..\Classes\Encrypt.h">
       <Filter>Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="Classes\CRC32.cpp">
+    </ClInclude>
+    <ClInclude Include="..\Classes\Files.h">
       <Filter>Classes</Filter>
-    </ClCompile>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Struct.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Tools.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AES.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

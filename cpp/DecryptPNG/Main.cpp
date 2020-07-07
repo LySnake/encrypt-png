@@ -23,14 +23,14 @@ int main(int argc, char *argv[])
 		auto all_files = path::walk(argv[i]);
 		for (auto filename : all_files)
 		{
-			if (path::splitext(filename)[1] == ".epng")
+			if (path::splitext(filename)[1] == ".png")
 			{
 				epngfiles.push_back(filename);
 			}
 		}
 	}
 
-	std::cout << "正在解密中..." << std::endl;
+	std::cout << "PNG文件个数:" << epngfiles.size() <<",正在解密中..." << std::endl;
 
 	DecryptPNG(epngfiles, key);
 

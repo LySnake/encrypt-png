@@ -20,7 +20,20 @@ void DecryptPNG(const std::vector<std::string> &filelist, const aes_key &key)
 			return;
 		}
 
+
+
+		//读取文件头
+		in_file.seekg(0);
+		auto head = ReadSome<HEAD_SIZE>(in_file);
+		if (0 == memcmp(head.data(), HEAD_DATA, HEAD_SIZE))
+		{
+			std::cerr << "图片:" << filename << ",未加密，不作处理" << std::endl;
+			continue;
+		}
+
+
 		// 读取数据块位置
+		in_file.seekg(0, std::ios::end);  //移动到最后
 		uint32_t end_pos = (uint32_t)in_file.tellg();
 		in_file.seekg(end_pos - sizeof(uint32_t));
 		uint32_t block_start_pos = ntohl(*reinterpret_cast<uint32_t *>(&(ReadSome<sizeof(uint32_t)>(in_file)[0])));
@@ -42,8 +55,9 @@ void DecryptPNG(const std::vector<std::string> &filelist, const aes_key &key)
 			continue;
 		}
 
-		// 创建PNG文件
-		std::ofstream out_file(path::splitext(filename)[0] + ".png", std::ios::binary);
+		// 创建临时PNG文件
+		std::string out_path = path::splitext(filename)[0] + ".epng";
+		std::ofstream out_file(out_path, std::ios::binary);
 		if (!out_file.is_open())
 		{
 			std::cerr << "创建" << path::splitext(filename)[1] << ".png" << " 失败！" << std::endl;
@@ -92,20 +106,24 @@ void DecryptPNG(const std::vector<std::string> &filelist, const aes_key &key)
 			else if (strcmp(s_name.c_str(), "IEND") == 0)
 			{
 				SteamCopy(out_file, IEND_DATA, sizeof(IEND_DATA));
-				std::cout << "成功解密：" << filename << std::endl;
+				//std::cout << "成功解密：" << filename << std::endl;
 
 				in_file.close();
 				out_file.close();
 
 
-				if (remove(filename.c_str()) == 0)
+				if (remove(filename.c_str()) != 0 || rename(out_path.c_str(), filename.c_str()) != 0)
 				{
-					std::cout << "删除epng文件成功:" << filename.c_str() << std::endl;
+					std::cout << "图片解密失败：" << filename.c_str() << std::endl;
+
+					system("pause");
+					return;
 				}
 				else
 				{
-					std::cout << "删除epng文件失败:" << filename.c_str() << std::endl;
+					std::cout << "图片解密成功：" << filename.c_str() << std::endl;
 				}
+
 
 				break;
 			}

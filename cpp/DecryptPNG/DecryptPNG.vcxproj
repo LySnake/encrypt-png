@@ -54,7 +54,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\DecryptPNG\Classes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Classes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -70,7 +70,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\DecryptPNG\Classes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Classes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -80,18 +80,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Classes\AES.cpp" />
-    <ClCompile Include="Classes\CRC32.cpp" />
-    <ClCompile Include="Classes\Decrypt.cpp" />
+    <ClCompile Include="..\Classes\AES.cpp" />
+    <ClCompile Include="..\Classes\CRC32.cpp" />
+    <ClCompile Include="..\Classes\Decrypt.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Classes\AES.h" />
-    <ClInclude Include="Classes\CRC32.h" />
-    <ClInclude Include="Classes\Decrypt.h" />
-    <ClInclude Include="Classes\Files.h" />
-    <ClInclude Include="Classes\Struct.h" />
-    <ClInclude Include="Classes\Tools.h" />
+    <ClInclude Include="..\Classes\AES.h" />
+    <ClInclude Include="..\Classes\CRC32.h" />
+    <ClInclude Include="..\Classes\Decrypt.h" />
+    <ClInclude Include="..\Classes\Files.h" />
+    <ClInclude Include="..\Classes\Struct.h" />
+    <ClInclude Include="..\Classes\Tools.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

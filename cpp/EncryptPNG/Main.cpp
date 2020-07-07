@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
 		}
 	}
 
-	std::cout << "正在加密中..." << std::endl;
+	std::cout << "png文件个数" << pngfiles.size() <<",正在加密中..." << std::endl;
 
 	// 图片加密操作
 	EncryptPNG(pngfiles, key);

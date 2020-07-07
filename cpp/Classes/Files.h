@@ -5,22 +5,20 @@
 #include <string>
 #include <vector>
 #include <direct.h>
+// win32
+#if defined(_WIN32) 
 #include <windows.h>
+#elif defined(LINUX) || defined(__APPLE__)
+#include <arpa/inet.h>
+#else
+//这个据说在win和unix系下都可以，备用
+#include<WinSock2.h>
+#pragma comment(lib,"ws2_32.lib")
+#endif
+
 
 namespace path
 {
-	/**
-	 * 获取当前目录
-	 */
-	static std::string curdir()
-	{
-		char exe_full_path[MAX_PATH];
-		GetModuleFileNameA(NULL, exe_full_path, MAX_PATH);
-		std::string current_path(exe_full_path);
-		int pos = current_path.find_last_of('\\', current_path.length());
-		return current_path.substr(0, pos);
-	}
-
 	/**
 	 * 文件名分解
 	 */

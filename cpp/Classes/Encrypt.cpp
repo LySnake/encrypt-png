@@ -24,8 +24,13 @@ std::stringstream WriteFileData(const std::string &filename, std::ofstream &outs
 		return block_info;
 	}
 
-	// 读取文件头
+	// 判断是否已经加密过
 	auto head = ReadSome<HEAD_SIZE>(file);
+	if (0 != memcmp(head.data(), HEAD_DATA, HEAD_SIZE))
+	{
+		std::cerr << "图片:" << filename << ",已经加密过，不作处理" << std::endl;
+		return block_info;
+	}
 
 	// 读取数据块
 	while (true)
@@ -67,6 +72,7 @@ std::stringstream WriteFileData(const std::string &filename, std::ofstream &outs
 			StreamMove(outstream, block_data, block_size + CRC_SIZE);
 		}
 	}
+	file.close();
 	return block_info;
 }
 
@@ -75,7 +81,7 @@ void EncryptPNG(const std::vector<std::string> &filelist, const aes_key &key)
 {
 	for (auto &filename : filelist)
 	{
-		// 写入文件数据
+		// 写入临时文件数据
 		std::string out_path = path::splitext(filename)[0] + ".epng";
 		std::ofstream out_file(out_path, std::ios::binary);
 		if (!out_file.is_open())
@@ -110,14 +116,19 @@ void EncryptPNG(const std::vector<std::string> &filelist, const aes_key &key)
 		char *user_data = reinterpret_cast<char *>(&block_start_pos);
 		for (unsigned int i = 0; i < sizeof(block_start_pos); ++i) out_file.put(user_data[i]);
 
-		std::cout << "已生成：" << out_path.c_str() << std::endl;
-		if (remove(filename.c_str()) == 0)
+		out_file.close();
+
+		if (remove(filename.c_str()) != 0 || rename(out_path.c_str(), filename.c_str()) != 0) 
 		{
-			std::cout << "删除png文件成功:" << filename.c_str() << std::endl;
+			std::cout << "图片加密失败：" << filename.c_str() << std::endl;
+
+			system("pause");
+			return;
 		}
 		else 
 		{
-			std::cout << "删除png文件失败:" << filename.c_str() << std::endl;
+			std::cout << "图片加密成功：" << filename.c_str() << std::endl;
 		}
+
 	}
 }
