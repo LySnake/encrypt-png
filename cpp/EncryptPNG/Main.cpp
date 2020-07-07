@@ -1,16 +1,23 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include "Files.h"
 #include "Encrypt.h"
 
+const char *CONST_KEY = "783a3a2d394f33703f290f0b2c524f7a";
 
 int main()
 {
-	// ÊäÈëÃÜÔ¿
+	// è¾“å…¥å¯†é’¥
 	aes_key key = { 0 };
-	std::cout << "ÇëÊäÈë16Î»ÃÜÔ¿£º" << std::endl;
-	std::cin.get((char *)&key[0], key.size());
+	//std::cout << "è¯·è¾“å…¥16ä½å¯†é’¥ï¼š" << std::endl;
+	//std::cin.get((char *)&key[0], key.size());
+	for (uint32_t i = 0; i < strlen(CONST_KEY); i++)
+	{
+		key[i] = CONST_KEY[i];
+	}
 
-	// Ñ°ÕÒËùÓĞpngÍ¼Æ¬
+
+
+	// å¯»æ‰¾æ‰€æœ‰pngå›¾ç‰‡
 	std::vector<std::string> pngfiles;
 	auto all_files = path::walk(path::curdir());
 	for (auto filename : all_files)
@@ -21,19 +28,12 @@ int main()
 		}
 	}
 
-	// È¡Ïà¶ÔÂ·¾¶
-	auto absolute_path = path::curdir() + "\\";
-	for (auto &filename : pngfiles)
-	{
-		filename = filename.substr(absolute_path.size(), filename.size());
-	}
+	std::cout << "æ­£åœ¨åŠ å¯†ä¸­..." << std::endl;
 
-	std::cout << "ÕıÔÚ¼ÓÃÜÖĞ..." << std::endl;
-
-	// Í¼Æ¬¼ÓÃÜ²Ù×÷
+	// å›¾ç‰‡åŠ å¯†æ“ä½œ
 	EncryptPNG(pngfiles, key);
 
-	system("pause");
+	//system("pause");
 
 	return 0;
 }

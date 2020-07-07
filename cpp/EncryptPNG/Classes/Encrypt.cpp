@@ -4,6 +4,7 @@
 #include "Files.h"
 #include <fstream>
 #include <iostream>
+#include<cstdio>
 #pragma comment(lib, "ws2_32.lib")
 
 /**
@@ -110,5 +111,13 @@ void EncryptPNG(const std::vector<std::string> &filelist, const aes_key &key)
 		for (unsigned int i = 0; i < sizeof(block_start_pos); ++i) out_file.put(user_data[i]);
 
 		std::cout << "已生成：" << out_path.c_str() << std::endl;
+		if (remove(filename.c_str()) == 0)
+		{
+			std::cout << "删除png文件成功:" << filename.c_str() << std::endl;
+		}
+		else 
+		{
+			std::cout << "删除png文件失败:" << filename.c_str() << std::endl;
+		}
 	}
 }

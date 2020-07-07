@@ -4,6 +4,7 @@
 #include "Files.h"
 #include <fstream>
 #include <iostream>
+#include<cstdio>
 #pragma comment(lib, "ws2_32.lib")
 
 
@@ -92,6 +93,16 @@ void DecryptPNG(const std::vector<std::string> &filelist, const aes_key &key)
 			{
 				SteamCopy(out_file, IEND_DATA, sizeof(IEND_DATA));
 				std::cout << "成功解密：" << filename << std::endl;
+
+				if (remove(filename.c_str()) == 0)
+				{
+					std::cout << "删除epng文件成功:" << filename.c_str() << std::endl;
+				}
+				else
+				{
+					std::cout << "删除epng文件失败:" << filename.c_str() << std::endl;
+				}
+
 				break;
 			}
 			else
