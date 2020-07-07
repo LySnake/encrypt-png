@@ -94,6 +94,10 @@ void DecryptPNG(const std::vector<std::string> &filelist, const aes_key &key)
 				SteamCopy(out_file, IEND_DATA, sizeof(IEND_DATA));
 				std::cout << "成功解密：" << filename << std::endl;
 
+				in_file.close();
+				out_file.close();
+
+
 				if (remove(filename.c_str()) == 0)
 				{
 					std::cout << "删除epng文件成功:" << filename.c_str() << std::endl;

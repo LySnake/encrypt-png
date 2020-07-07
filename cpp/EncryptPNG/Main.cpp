@@ -4,7 +4,7 @@
 
 const char *CONST_KEY = "783a3a2d394f33703f290f0b2c524f7a";
 
-int main()
+int main(int argc, char *argv[])
 {
 	// 输入密钥
 	aes_key key = { 0 };
@@ -16,15 +16,19 @@ int main()
 	}
 
 
-
 	// 寻找所有png图片
 	std::vector<std::string> pngfiles;
-	auto all_files = path::walk(path::curdir());
-	for (auto filename : all_files)
+
+
+	for (int i = 1; i < argc; ++i)
 	{
-		if (path::splitext(filename)[1] == ".png")
+		auto all_files = path::walk(argv[i]);
+		for (auto filename : all_files)
 		{
-			pngfiles.push_back(filename);
+			if (path::splitext(filename)[1] == ".png")
+			{
+				pngfiles.push_back(filename);
+			}
 		}
 	}
 
